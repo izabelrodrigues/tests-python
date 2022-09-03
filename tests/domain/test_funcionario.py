@@ -54,7 +54,8 @@ class TestFuncionario:
         novo_salario_esperado = 90000
 
         # when
-        novo_salario_calculado = funcionario_mock.decrescer_salario()
+        funcionario_mock.decrescer_salario()
+        novo_salario_calculado = funcionario_mock._salario
 
         # then
         assert novo_salario_calculado == novo_salario_esperado
@@ -66,7 +67,8 @@ class TestFuncionario:
         novo_salario_esperado = 135000
 
         # when
-        novo_salario_calculado = funcionario_mock.decrescer_salario()
+        funcionario_mock.decrescer_salario()
+        novo_salario_calculado = funcionario_mock._salario
 
         # then
         assert novo_salario_calculado == novo_salario_esperado
@@ -78,7 +80,8 @@ class TestFuncionario:
         novo_salario_esperado = 90000
 
         # when
-        novo_salario_calculado = funcionario_mock.decrescer_salario()
+        funcionario_mock.decrescer_salario()
+        novo_salario_calculado = funcionario_mock._salario
 
         # then
         assert novo_salario_calculado == novo_salario_esperado

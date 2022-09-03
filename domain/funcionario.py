@@ -28,5 +28,10 @@ class Funcionario:
             valor = 0
         return valor
 
+    def decrescer_salario(self):
+        if self._salario >= 100000:
+            decrescimo = self._salario * 0.10
+            self._salario = self._salario - decrescimo
+
     def __str__(self):
         return f'Funcionario({self._nome}, {self._data_nascimento}, {self._salario})'
