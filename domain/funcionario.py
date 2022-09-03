@@ -35,13 +35,9 @@ class Funcionario:
             self._salario = self._salario - decrescimo
 
     def _is_diretor(self):
-        if self._funcao == 'DIRETOR':
-            return True
-        return False
+        return self._funcao == 'DIRETOR'
     def _is_socio(self):
-        if self._funcao == 'SOCIO':
-            return True
-        return False
+        return self._funcao == 'SOCIO'
 
     def __str__(self):
         return f'Funcionario({self._nome}, {self._data_nascimento}, {self._salario}, {self._funcao})'
