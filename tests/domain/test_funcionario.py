@@ -3,7 +3,7 @@ from datetime import date
 import pytest
 from pytest import mark
 
-from domain.funcionario import Funcionario
+from src.domain.funcionario import Funcionario
 
 
 class TestFuncionario:

@@ -1,3 +1,4 @@
 .idea/
 tests/*.pytest_cache/*
 *.pyc
+/.coverage
