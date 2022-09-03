@@ -1,4 +1,7 @@
 from datetime import date
+
+import pytest
+
 from domain.funcionario import Funcionario
 
 
@@ -17,15 +20,14 @@ class TestFuncionario:
         # then
         assert idade_calculada == idade_esperada
 
-    def test_valida_calculo_bonus_salario_maior_dez_mil_deve_retornar_zero(self):
-        # given
-        funcionario_mock = self.build_mock_funcionario(11000)
+    def test_valida_calculo_bonus_salario_maior_dez_mil_deve_emitir_excecao(self):
+        with pytest.raises(Exception) as e:
 
-        # when
-        bonus_calculado = funcionario_mock.calcular_bonus()
+            funcionario_mock = self.build_mock_funcionario(11000)
+            assert funcionario_mock.calcular_bonus()
 
-        # then
-        assert bonus_calculado == 0
+        assert str(e.value) == 'O salário está em uma faixa não permitida para receber um bônus!'
+
 
     def test_valida_calculo_bonus_salario_menor_dez_mil_deve_retornar_bonus_dez_porcento(self):
         # given

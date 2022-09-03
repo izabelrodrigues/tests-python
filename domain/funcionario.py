@@ -26,7 +26,7 @@ class Funcionario:
     def calcular_bonus(self):
         valor = self._salario * 0.1
         if valor > 1000:
-            valor = 0
+            raise Exception('O salário está em uma faixa não permitida para receber um bônus!')
         return valor
 
     def decrescer_salario(self):
