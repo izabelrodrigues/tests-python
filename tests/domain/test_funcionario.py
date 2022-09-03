@@ -21,7 +21,7 @@ class TestFuncionario:
     def test_valida_calculo_bonus_salario_maior_dez_mil_deve_retornar_zero(self):
 
         # given
-        funcionario_mock = Funcionario('Func-Test', '01/03/1980', 11000)
+        funcionario_mock = self.build_mock_funcionario(11000)
 
         # when
         bonus_calculado = funcionario_mock.calcular_bonus()
@@ -32,7 +32,7 @@ class TestFuncionario:
     def test_valida_calculo_bonus_salario_menor_dez_mil_deve_retornar_bonus_dez_porcento(self):
 
         # given
-        funcionario_mock = Funcionario('Func-Test', '01/03/1980', 9000)
+        funcionario_mock = self.build_mock_funcionario(9000)
 
         # when
         bonus_calculado = funcionario_mock.calcular_bonus()
@@ -43,7 +43,7 @@ class TestFuncionario:
     def test_valida_calculo_bonus_salario_igual_dez_mil_deve_retornar_bonus_mil_reais(self):
 
         # given
-        funcionario_mock = Funcionario('Func-Test', '01/03/1980', 10000)
+        funcionario_mock = self.build_mock_funcionario(10000)
 
         # when
         bonus_calculado = funcionario_mock.calcular_bonus()
@@ -51,4 +51,5 @@ class TestFuncionario:
         # then
         assert bonus_calculado == 1000
 
-
+    def build_mock_funcionario(self, salario):
+        return Funcionario('Func-Test', '01/03/1980', salario)
