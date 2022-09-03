@@ -2,10 +2,11 @@ from datetime import date
 
 
 class Funcionario:
-    def __init__(self, nome, data_nascimento, salario):
+    def __init__(self, nome, data_nascimento, salario,funcao):
         self._nome = nome
         self._data_nascimento = data_nascimento
         self._salario = salario
+        self._funcao = funcao
 
     @property
     def nome(self):
@@ -29,9 +30,18 @@ class Funcionario:
         return valor
 
     def decrescer_salario(self):
-        if self._salario >= 100000:
+        if self._salario >= 100000 and (self._is_diretor() or self._is_socio()):
             decrescimo = self._salario * 0.10
             self._salario = self._salario - decrescimo
 
+    def _is_diretor(self):
+        if self._funcao == 'DIRETOR':
+            return True
+        return False
+    def _is_socio(self):
+        if self._funcao == 'SOCIO':
+            return True
+        return False
+
     def __str__(self):
-        return f'Funcionario({self._nome}, {self._data_nascimento}, {self._salario})'
+        return f'Funcionario({self._nome}, {self._data_nascimento}, {self._salario}, {self._funcao})'
