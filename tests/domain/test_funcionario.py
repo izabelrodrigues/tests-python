@@ -1,11 +1,13 @@
 from datetime import date
 
 import pytest
+from pytest import mark
 
 from domain.funcionario import Funcionario
 
 
 class TestFuncionario:
+    @mark.calcular_idade
     def test_valida_calculo_idade(self):
         # given
         ano_nascimento = 1980
@@ -20,6 +22,7 @@ class TestFuncionario:
         # then
         assert idade_calculada == idade_esperada
 
+    @mark.calcular_bonus
     def test_valida_calculo_bonus_salario_maior_dez_mil_deve_emitir_excecao(self):
         with pytest.raises(Exception) as e:
 
@@ -28,7 +31,7 @@ class TestFuncionario:
 
         assert str(e.value) == 'O salário está em uma faixa não permitida para receber um bônus!'
 
-
+    @mark.calcular_bonus
     def test_valida_calculo_bonus_salario_menor_dez_mil_deve_retornar_bonus_dez_porcento(self):
         # given
         funcionario_mock = self.build_mock_funcionario(9000)
@@ -39,6 +42,7 @@ class TestFuncionario:
         # then
         assert bonus_calculado == 900
 
+    @mark.calcular_bonus
     def test_valida_calculo_bonus_salario_igual_dez_mil_deve_retornar_bonus_mil_reais(self):
         # given
         funcionario_mock = self.build_mock_funcionario(10000)
@@ -49,6 +53,7 @@ class TestFuncionario:
         # then
         assert bonus_calculado == 1000
 
+    @mark.reduzir_salario
     def test_quando_salario_igual_cem_mil_deve_realizar_decrescimo_dez_porcento(self):
         # given
         salario = 100000
@@ -62,6 +67,7 @@ class TestFuncionario:
         # then
         assert novo_salario_calculado == novo_salario_esperado
 
+    @mark.reduzir_salario
     def test_quando_salario_maior_cem_mil_deve_realizar_decrescimo_dez_porcento(self):
         # given
         salario = 150000
@@ -75,6 +81,7 @@ class TestFuncionario:
         # then
         assert novo_salario_calculado == novo_salario_esperado
 
+    @mark.reduzir_salario
     def test_quando_salario_menor_cem_mil_nao_deve_realizar_decrescimo_dez_porcento(self):
         # given
         salario = 90000
@@ -88,6 +95,7 @@ class TestFuncionario:
         # then
         assert novo_salario_calculado == novo_salario_esperado
 
+    @mark.reduzir_salario
     def test_quando_diretor_salario_menor_cem_mil_nao_deve_realizar_decrescimo_dez_porcento(self):
         # given
         salario = 90000
@@ -101,6 +109,7 @@ class TestFuncionario:
         # then
         assert novo_salario_calculado == novo_salario_esperado
 
+    @mark.reduzir_salario
     def test_quando_socio_salario_menor_cem_mil_nao_deve_realizar_decrescimo_dez_porcento(self):
         # given
         salario = 90000
