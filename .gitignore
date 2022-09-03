@@ -2,3 +2,4 @@
 tests/*.pytest_cache/*
 *.pyc
 /.coverage
+/.pytest_cache/
