@@ -51,7 +51,7 @@ pytest --cov-report xml
 ![image](https://user-images.githubusercontent.com/3687713/188286934-c19b8728-d16a-457b-9c80-0eb6d200df79.png)
 
 
-## Documentações de referência
+## Documentação de referência
 
 - Marks pytest: https://docs.pytest.org/en/7.1.x/how-to/mark.html#mark
 - Configure options pytest.ini: https://docs.pytest.org/en/7.1.x/reference/reference.html#ini-options-ref
