@@ -4,7 +4,6 @@ from domain.funcionario import Funcionario
 
 class TestFuncionario:
     def test_valida_calculo_idade(self):
-
         # given
         ano_nascimento = 1980
         ano_atual = date.today().year
@@ -19,7 +18,6 @@ class TestFuncionario:
         assert idade_calculada == idade_esperada
 
     def test_valida_calculo_bonus_salario_maior_dez_mil_deve_retornar_zero(self):
-
         # given
         funcionario_mock = self.build_mock_funcionario(11000)
 
@@ -30,7 +28,6 @@ class TestFuncionario:
         assert bonus_calculado == 0
 
     def test_valida_calculo_bonus_salario_menor_dez_mil_deve_retornar_bonus_dez_porcento(self):
-
         # given
         funcionario_mock = self.build_mock_funcionario(9000)
 
@@ -41,7 +38,6 @@ class TestFuncionario:
         assert bonus_calculado == 900
 
     def test_valida_calculo_bonus_salario_igual_dez_mil_deve_retornar_bonus_mil_reais(self):
-
         # given
         funcionario_mock = self.build_mock_funcionario(10000)
 
@@ -50,6 +46,42 @@ class TestFuncionario:
 
         # then
         assert bonus_calculado == 1000
+
+    def test_quando_salario_igual_cem_mil_deve_realizar_decrescimo_dez_porcento(self):
+        # given
+        salario = 100000
+        funcionario_mock = self.build_mock_funcionario(salario)
+        novo_salario_esperado = 90000
+
+        # when
+        novo_salario_calculado = funcionario_mock.decrescer_salario()
+
+        # then
+        assert novo_salario_calculado == novo_salario_esperado
+
+    def test_quando_salario_maior_cem_mil_deve_realizar_decrescimo_dez_porcento(self):
+        # given
+        salario = 150000
+        funcionario_mock = self.build_mock_funcionario(salario)
+        novo_salario_esperado = 135000
+
+        # when
+        novo_salario_calculado = funcionario_mock.decrescer_salario()
+
+        # then
+        assert novo_salario_calculado == novo_salario_esperado
+
+    def test_quando_salario_menor_cem_mil_nao_deve_realizar_decrescimo_dez_porcento(self):
+        # given
+        salario = 90000
+        funcionario_mock = self.build_mock_funcionario(salario)
+        novo_salario_esperado = 90000
+
+        # when
+        novo_salario_calculado = funcionario_mock.decrescer_salario()
+
+        # then
+        assert novo_salario_calculado == novo_salario_esperado
 
     def build_mock_funcionario(self, salario):
         return Funcionario('Func-Test', '01/03/1980', salario)
