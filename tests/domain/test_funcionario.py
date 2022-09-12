@@ -25,10 +25,13 @@ class TestFuncionario:
     @mark.calcular_bonus
     def test_valida_calculo_bonus_salario_maior_dez_mil_deve_emitir_excecao(self):
         with pytest.raises(Exception) as e:
-
+            # given
             funcionario_mock = self.build_mock_funcionario(11000)
+
+            # when
             assert funcionario_mock.calcular_bonus()
 
+        # then
         assert str(e.value) == 'O salário está em uma faixa não permitida para receber um bônus!'
 
     @mark.calcular_bonus
